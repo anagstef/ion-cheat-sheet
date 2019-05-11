@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Ionic v4 CheatSheet`,
+    description: `An Ionic Framework v4 CheatSheet`,
+    author: `@anagstef`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -18,8 +18,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `ion-cheat-sheet`,
+        short_name: `ioncss`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -30,5 +30,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify`
   ],
 }

@@ -1,20 +1,28 @@
 import React from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
+const IndexPage = ({ pageContext }) => (
   <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <SEO title="Ionic 4 CheatSheet" keywords={[`ionic`, `cheatsheet`, `angular`, `css`]} />
+    {pageContext.downloadedContent.map(content => {
+      if (content.cssVars.length < 1) return null;
+      return (<div key={content.title}>
+                <h2>{content.title}</h2>
+                <p>{content.url}</p>
+                <table>
+                  <tbody>
+                    {content.cssVars.map(cssVarWithDesc =>
+                        (<tr key={cssVarWithDesc.cssVar}>
+                          <td>{cssVarWithDesc.cssVar}</td>
+                          <td style={{width: '50%'}}>{cssVarWithDesc.cssDesc}</td>
+                        </tr>)
+                      )}
+                  </tbody>
+                </table>
+              </div>);
+    })}
+    <p>{pageContext.buildDate}</p>
   </Layout>
 )
 
