@@ -620,3 +620,22 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+.list-item{
+  position: relative;
+}
+
+.list-item h2{
+  margin-left: 20px;
+}
+
+.list-item h2::before{
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-49 141 512 512'%3E%3Cpath d='M79 641.8c0 5.7.8 8.9 4 10.5 2.4 1.6 6.4 0 10.5-4.1l235.1-236.7c4-4.1 6.4-8.9 6.4-14.6s-2.4-10.5-6.4-14.6L93.5 145.7c-4-4.1-7.2-5.7-10.5-4.1-2.4.8-4 4.9-4 10.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
