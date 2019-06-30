@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Searchbar from "../components/searchbar";
 import { connect } from "react-redux";
+import ListItem from "../components/list-item";
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -20,20 +21,7 @@ class IndexPage extends React.Component {
         <Searchbar />
         {this.state.pageContext.downloadedContent.map(content => {
           if (content.cssVars.length < 1 || !content.title.includes(this.props.search || '')) return null;
-          return (<div key={content.title} className="list-item">
-                    <h2>{content.title}</h2>
-                    <p>{content.url}</p>
-                    <table>
-                      <tbody>
-                        {content.cssVars.map(cssVarWithDesc =>
-                            (<tr key={cssVarWithDesc.cssVar}>
-                              <td>{cssVarWithDesc.cssVar}</td>
-                              <td style={{width: '50%'}}>{cssVarWithDesc.cssDesc}</td>
-                            </tr>)
-                          )}
-                      </tbody>
-                    </table>
-                  </div>);
+          return <ListItem content={content} key={content.title} />
         })}
         <p>{this.state.pageContext.buildDate}</p>
       </Layout>
