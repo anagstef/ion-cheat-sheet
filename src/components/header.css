@@ -1,0 +1,33 @@
+header{
+  background: #4d8dff;
+  margin-bottom: 1.45rem;
+}
+
+header .header-container{
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 1.45rem 1.0875rem;
+  color: white;
+  display: flex;
+}
+
+header h1{
+  margin: 0;
+}
+
+header h5{
+  margin: 0;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.ionic-logo {
+  width: 70px;
+  height: 70px;
+}
+
+.header-container img{
+  filter: brightness(100);
+  margin: 0;
+  margin-right: 30px;
+}

@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Ionic v4 CheatSheet`,
-    description: `An Ionic Framework v4 CheatSheet`,
+    title: `ion-cheat-sheet`,
+    description: `An Ionic Framework v4 Cheat Sheet`,
     author: `@anagstef`,
   },
   plugins: [
@@ -19,16 +19,14 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `ion-cheat-sheet`,
-        short_name: `ioncss`,
+        short_name: `ion-cheat-sheet`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#4d8dff`,
+        theme_color: `#4d8dff`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/ionic-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`
   ],

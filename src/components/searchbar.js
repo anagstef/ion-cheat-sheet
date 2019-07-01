@@ -20,14 +20,14 @@ class Searchbar extends React.Component {
         </div>
         <div className="checkboxes">
           <div>
-            <input type="checkbox" name="option1" value="CSS" /><label htmlFor="option1">CSS Vars</label>
+            <input type="checkbox" name="option1" value="CSS" checked /><label htmlFor="option1">CSS Vars</label>
           </div>
-          <div>
+          {/* <div>
             <input type="checkbox" name="option2" value="Methods" /><label htmlFor="option2">Methods</label>
           </div>
           <div>
             <input type="checkbox" name="option3" value="Properties" /><label htmlFor="option3">Properties</label>
-          </div>
+          </div> */}
         </div>
       </div>
     );

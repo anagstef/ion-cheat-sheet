@@ -17,13 +17,22 @@ class IndexPage extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title="Ionic 4 CheatSheet" keywords={[`ionic`, `cheatsheet`, `angular`, `css`]} />
+        <SEO title="ion-cheat-sheet - Ionic 4 Cheat Sheet" keywords={[`ionic`, `cheatsheet`, `angular`, `css`, `react`, `vue`, `stencil`, `web components`]} />
         <Searchbar />
         {this.state.pageContext.downloadedContent.map(content => {
           if (content.cssVars.length < 1 || !content.title.includes(this.props.search || '')) return null;
           return <ListItem content={content} key={content.title} />
         })}
-        <p>{this.state.pageContext.buildDate}</p>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '14px', fontStyle: 'italic' }}>
+          <span style={{ width: '70%', textAlign: 'right' }}>
+            Last update from
+            {` `}
+            <a href="https://ionicframework.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'unset', color: '#4d8dff'}}>Ionic Framework Docs</a>
+            {` `}
+            was on {this.state.pageContext.buildDate}.
+          </span>
+        </div>
+
       </Layout>
     );
   }
