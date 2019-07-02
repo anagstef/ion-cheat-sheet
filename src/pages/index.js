@@ -4,25 +4,42 @@ import SEO from "../components/seo"
 import Searchbar from "../components/searchbar";
 import { connect } from "react-redux";
 import ListItem from "../components/list-item";
+import Fuse from 'fuse.js';
+
+const options = {
+  shouldSort: true,
+  threshold: 0.6,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 1,
+  keys: [
+    "title"
+  ]
+};
 
 class IndexPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageContext: props.pageContext
+      pageContext: props.pageContext,
+      fuse: new Fuse(props.pageContext.downloadedContent, options)
     };
-
   }
 
   render() {
+    const result = this.props.search ? this.state.fuse.search(this.props.search) : this.state.pageContext.downloadedContent;
     return (
       <Layout>
         <SEO title="ion-cheat-sheet - Ionic 4 Cheat Sheet" keywords={[`ionic`, `cheatsheet`, `angular`, `css`, `react`, `vue`, `stencil`, `web components`]} />
         <Searchbar />
-        {this.state.pageContext.downloadedContent.map(content => {
-          if (content.cssVars.length < 1 || !content.title.includes(this.props.search || '')) return null;
-          return <ListItem content={content} key={content.title} />
-        })}
+        <div className="main-content">
+          {result.map(content => {
+            if (content.cssVars.length < 1) return null;
+            return <ListItem content={content} key={content.title} />
+          })}
+          {!result.length ? (<div style={{ textAlign: 'center', fontSize: '24px', fontWeight: '500', opacity: '0.5', margin: '50px auto'}}>No matches.</div>) : null}
+        </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '14px', fontStyle: 'italic' }}>
           <span style={{ width: '70%', textAlign: 'right' }}>
             Last update from
