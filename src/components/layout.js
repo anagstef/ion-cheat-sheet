@@ -36,10 +36,9 @@ const Layout = ({ children }) => (
           }}
         >
           <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <footer style={{ fontSize: '12px'}}>
+            © {new Date().getFullYear()}. Built with <span class="heart-icon">&lt;3</span> Hit me up on{' '}
+            <a href="https://twitter.com/anagstef" target="_blank" rel="noopener noreferrer"><span class="twitter-icon">Twitter</span></a>
           </footer>
         </div>
       </>
