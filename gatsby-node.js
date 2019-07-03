@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const cheerio = require('cheerio');
 const cloudscraper = require('cloudscraper').defaults({ resolveWithFullResponse: true });
 
@@ -8,14 +9,14 @@ const getLinksList = (responseBody) => {
   const $ = cheerio.load(responseBody);
   const linksSet = new Set();
 
-  $('ul li a').each(function() {
+  $('ul li a').each(function () {
     linksSet.add($(this).attr('href'));
   });
 
   if (linksSet.size < 1) throw new Error('No links found');
 
   return Array.from(linksSet).filter(str => str.charAt(0) === '/');
-}
+};
 
 const getCSSVars = (responseBody) => {
   const $ = cheerio.load(responseBody);
@@ -24,35 +25,30 @@ const getCSSVars = (responseBody) => {
   $('#css-custom-properties + table > tbody > tr').each(function () {
     cssVars.push({
       cssVar: $(this).children(':first-child').text().trim(),
-      cssDesc: $(this).children(':nth-child(2)').text().trim()
+      cssDesc: $(this).children(':nth-child(2)').text().trim(),
     });
   });
 
   return cssVars;
-}
+};
 
-const getPageContent = (link) => {
-  return cloudscraper.get(mainDocsURL + link)
-    .then(response => {
-      const $ = cheerio.load(response.body);
-      downloadedContent.push({
-        title: $('h1').text().trim(),
-        url: mainDocsURL + link,
-        cssVars: getCSSVars(response.body)
-      });
+const getPageContent = link => cloudscraper.get(mainDocsURL + link)
+  .then((response) => {
+    const $ = cheerio.load(response.body);
+    downloadedContent.push({
+      title: $('h1').text().trim(),
+      url: mainDocsURL + link,
+      cssVars: getCSSVars(response.body),
     });
-}
+  });
 
-exports.onPreBootstrap = () => {
-  return cloudscraper.get(mainDocsURL + '/docs/api')
-    .then(response => {
+exports.onPreBootstrap = () => cloudscraper.get(`${mainDocsURL}/docs/api`)
+  .then((response) => {
+    const linksList = getLinksList(response.body);
+    const promises = linksList.map(link => getPageContent(link));
 
-      const linksList = getLinksList(response.body);
-      const promises = linksList.map(link => getPageContent(link));
-
-      return Promise.all(promises);
-    });
-}
+    return Promise.all(promises);
+  });
 
 exports.onCreatePage = ({ page, actions }) => {
   const { createPage, deletePage } = actions;
@@ -67,7 +63,7 @@ exports.onCreatePage = ({ page, actions }) => {
     context: {
       ...page.context,
       downloadedContent: downloadedContent.sort((a, b) => a.title.localeCompare(b.title)),
-      buildDate: dateNow.getDate() + '/' + (dateNow.getMonth()+1) + '/' + dateNow.getFullYear()
-    }
+      buildDate: `${dateNow.getDate()}/${dateNow.getMonth() + 1}/${dateNow.getFullYear()}`,
+    },
   });
-}
+};

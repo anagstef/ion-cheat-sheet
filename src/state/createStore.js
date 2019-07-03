@@ -1,7 +1,7 @@
-import { createStore as reduxCreateStore } from "redux";
+import { createStore as reduxCreateStore } from 'redux';
 
 const reducer = (state, action) => {
-  if (action.type === `UPDATE_SEARCH_TERM`) {
+  if (action.type === 'UPDATE_SEARCH_TERM') {
     const newState = Object.assign({}, state, {
       search: action.data,
     });

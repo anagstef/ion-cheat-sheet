@@ -1,7 +1,7 @@
-import PropTypes from "prop-types"
-import React from "react"
-import './header.css'
-import IonicLogo from '../images/ionic-icon.png'
+import PropTypes from 'prop-types';
+import React from 'react';
+import './header.css';
+import IonicLogo from '../images/ionic-icon.png';
 
 const Header = ({ siteTitle, siteSubtitle }) => (
   <header>
@@ -13,16 +13,16 @@ const Header = ({ siteTitle, siteSubtitle }) => (
       </div>
     </div>
   </header>
-)
+);
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
   siteSubtitle: PropTypes.string,
-}
+};
 
 Header.defaultProps = {
-  siteTitle: ``,
-  siteSubtitle: ``,
-}
+  siteTitle: '',
+  siteSubtitle: '',
+};
 
-export default Header
+export default Header;
