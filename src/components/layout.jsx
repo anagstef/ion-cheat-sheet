@@ -26,32 +26,48 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Header
-          siteTitle={data.site.siteMetadata.title}
-          siteSubtitle={data.site.siteMetadata.description}
-        />
-        <div
-          style={{
-            margin: '0 auto',
-            maxWidth: 960,
-            padding: '0px 1.0875rem 1.45rem',
-            paddingTop: 0,
-            height: '100%',
-          }}
-        >
-          <main>{children}</main>
-          <footer style={{ fontSize: '12px' }}>
-            ©
-            {' '}
-            {new Date().getFullYear()}
-. Built with
-            {' '}
-            <span className="heart-icon">&lt;3</span>
-            {' '}
-Hit me up on
-            {' '}
-            <a href="https://twitter.com/anagstef" target="_blank" rel="noopener noreferrer"><span className="twitter-icon">Twitter</span></a>
-          </footer>
+        <div className="page-container">
+          <div className="header-content-container">
+            <Header
+              siteTitle={data.site.siteMetadata.title}
+              siteSubtitle={data.site.siteMetadata.description}
+            />
+            <main style={{
+              margin: '0 auto',
+              maxWidth: 960,
+              padding: '0px 1.0875rem 1.45rem',
+              paddingTop: 0,
+              height: '100%',
+            }}
+            >
+              {children}
+            </main>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <footer style={{
+              margin: '0 auto',
+              maxWidth: 960,
+              padding: '0px 1.0875rem 1.45rem',
+              paddingTop: 0,
+              fontSize: '12px',
+              position: 'absolute',
+              bottom: 0,
+              width: '100%',
+              height: '50px',
+            }}
+            >
+              ©
+              {' '}
+              {new Date().getFullYear()}
+  . Built with
+              {' '}
+              <span className="heart-icon">&lt;3</span>
+              {' '}
+  Hit me up on
+              {' '}
+              <a href="https://twitter.com/anagstef" target="_blank" rel="noopener noreferrer"><span className="twitter-icon">Twitter</span></a>
+            </footer>
+          </div>
         </div>
       </>
     )}
