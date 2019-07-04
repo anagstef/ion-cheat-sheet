@@ -1,5 +1,5 @@
 header{
-  background: #4d8dff;
+  background: var(--header-color);
   margin-bottom: 1.45rem;
 }
 
@@ -7,8 +7,27 @@ header .header-container{
   margin: 0 auto;
   max-width: 960px;
   padding: 1.45rem 1.0875rem;
-  color: white;
+  color: var(--header-font-color);
   display: flex;
+  justify-content: space-between;
+}
+
+header .header-title-logo{
+  display: flex;
+}
+
+header button {
+  height: 100%;
+  width: auto;
+  font-size: 14px;
+  line-height: normal;
+  border-radius: 50%;
+  background-color: #fff;
+  font-weight: 500;
+}
+
+header button:focus {
+  outline: none;
 }
 
 header h1{

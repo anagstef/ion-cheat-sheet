@@ -1,3 +1,31 @@
+:root {
+  --searchbar-bg-color: #f0f0f0;
+  --searchbar-text-color: rgba(0, 0, 0, 0.5);
+  --font-color: rgba(0, 0, 0, 0.8);
+  --bg-color: #fff;
+  --header-color: #4d8dff;
+  --header-font-color: #fff;
+  --ionic-link-icon-color: rgba(0, 0, 0, 0.2);
+  --ionic-link-icon-color-hover: rgb(77, 141, 255, 0.6);
+  --table-border-bottom-color: rgba(0, 0, 0, 0.15);
+  --variable-highlight-color: rgba(212, 212, 212, 0.2);
+  --variable-highlight-color-hover: rgba(77,166,255, 0.2);
+}
+
+.dark-theme {
+  --searchbar-bg-color: rgba(240, 240, 240, 0.1);
+  --searchbar-text-color: rgba(255, 255, 255, 0.7);
+  --font-color: #fff;
+  --bg-color: rgba(40, 44, 53, 1);
+  --header-color: var(--bg-color);
+  --header-font-color: #fff;
+  --ionic-link-icon-color: rgba(255, 255, 255, 0.5);
+  --ionic-link-icon-color-hover: rgba(77, 141, 255, 1);
+  --table-border-bottom-color: rgba(255, 255, 255, 0.15);
+  --variable-highlight-color: rgba(212, 212, 212, 0.1);
+  --variable-highlight-color-hover: rgba(77,166,255, 0.8);
+}
+
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -8,6 +36,8 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+  color: var(--font-color);
 }
 article,
 aside,
@@ -199,7 +229,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: hsla(0, 0%, 0%, 0.8);
+  color: var(--font-color);
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -623,8 +653,10 @@ pre tt:after {
   left: 0;
   width: 20px;
   height: 20px;
-  opacity: 0.8;
-  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-49 141 512 512'%3E%3Cpath d='M79 641.8c0 5.7.8 8.9 4 10.5 2.4 1.6 6.4 0 10.5-4.1l235.1-236.7c4-4.1 6.4-8.9 6.4-14.6s-2.4-10.5-6.4-14.6L93.5 145.7c-4-4.1-7.2-5.7-10.5-4.1-2.4.8-4 4.9-4 10.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background-color: var(--font-color);
+  mask-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-49 141 512 512'%3E%3Cpath d='M79 641.8c0 5.7.8 8.9 4 10.5 2.4 1.6 6.4 0 10.5-4.1l235.1-236.7c4-4.1 6.4-8.9 6.4-14.6s-2.4-10.5-6.4-14.6L93.5 145.7c-4-4.1-7.2-5.7-10.5-4.1-2.4.8-4 4.9-4 10.5'/%3E%3C/svg%3E");
 }
 
 .heart-icon{

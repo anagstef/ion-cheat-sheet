@@ -5,13 +5,21 @@ const reducer = (state, action) => {
     const newState = Object.assign({}, state, {
       search: action.data,
     });
-    // localStorage.setItem('state', JSON.stringify(newState));
+    return newState;
+  }
+  if (action.type === 'DARK_THEME') {
+    const body = document.body.classList;
+
+    if (action.data) body.add('dark-theme');
+    else body.remove('dark-theme');
+
+    const newState = Object.assign({}, state, {
+      darkTheme: action.data,
+    });
     return newState;
   }
   return state;
 };
-
-// const initialState = JSON.parse(localStorage.getItem('state')) || { };
 
 const createStore = () => reduxCreateStore(reducer, { });
 export default createStore;
