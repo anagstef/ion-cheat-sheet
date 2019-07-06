@@ -1,6 +1,7 @@
 header{
   background: var(--header-color);
   margin-bottom: 1.45rem;
+  transition: background .2s ease-out;
 }
 
 header .header-container{
@@ -14,20 +15,6 @@ header .header-container{
 
 header .header-title-logo{
   display: flex;
-}
-
-header button {
-  height: 100%;
-  width: auto;
-  font-size: 14px;
-  line-height: normal;
-  border-radius: 50%;
-  background-color: #fff;
-  font-weight: 500;
-}
-
-header button:focus {
-  outline: none;
 }
 
 header h1{
