@@ -18,6 +18,12 @@ const reducer = (state, action) => {
     });
     return newState;
   }
+  if (action.type === 'UPDATE_SEARCHBAR_FIXED') {
+    const newState = Object.assign({}, state, {
+      searchbarFixed: action.data,
+    });
+    return newState;
+  }
   return state;
 };
 

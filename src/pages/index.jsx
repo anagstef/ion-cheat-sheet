@@ -24,6 +24,23 @@ class IndexPage extends React.Component {
     this.state = {
       fuse: new Fuse(props.pageContext.downloadedContent, options),
     };
+    this.fixedSearchbar = this.fixedSearchbar.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.fixedSearchbar);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.fixedSearchbar);
+  }
+
+  fixedSearchbar() {
+    const { stickSearchBarToTop, searchbarFixed } = this.props;
+    const contentPosition = document.getElementById('mainContent').offsetTop;
+    const scrollPosition = window.scrollY;
+    if (scrollPosition < contentPosition && searchbarFixed) stickSearchBarToTop(false);
+    else if (scrollPosition >= contentPosition && !searchbarFixed) stickSearchBarToTop(true);
   }
 
   render() {
@@ -34,7 +51,7 @@ class IndexPage extends React.Component {
       <Layout>
         <SEO title="ion-cheat-sheet - Ionic 4 Cheat Sheet" keywords={['ionic', 'cheatsheet', 'angular', 'css', 'react', 'vue', 'stencil', 'web components']} />
         <Searchbar />
-        <div className="main-content">
+        <div className="main-content" id="mainContent">
           {result.map((content) => {
             if (content.cssVars.length < 1) return null;
             return <ListItem content={content} key={content.title} />;
@@ -70,4 +87,7 @@ No matches.
   }
 }
 
-export default connect(({ search }) => ({ search }))(IndexPage);
+export default connect(
+  ({ search, searchbarFixed }) => ({ search, searchbarFixed }),
+  dispatch => ({ stickSearchBarToTop: value => dispatch({ type: 'UPDATE_SEARCHBAR_FIXED', data: value }) }),
+)(IndexPage);

@@ -2,6 +2,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 .searchbar-container{
   position: relative;
   width: 100%;
@@ -58,4 +59,38 @@
   padding-left: 10px;
   font-size: 14px;
   line-height: 18px;
+}
+
+.search-fixed{
+  position: fixed;
+  margin: auto;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-color: var(--bg-color);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  animation-duration: .3s;
+  animation-name: slidein;
+}
+
+.search-fixed .searchbar-container{
+  max-width: 960px;
+  margin-bottom: 0;
+}
+
+.search-fixed .checkboxes{
+  display: none;
+}
+
+@keyframes slidein {
+  from {
+    top: -100%;
+  }
+
+  to {
+    top: 0;
+  }
 }

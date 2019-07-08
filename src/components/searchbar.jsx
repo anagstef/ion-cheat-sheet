@@ -16,9 +16,9 @@ class Searchbar extends React.Component {
   }
 
   render() {
-    const { search } = this.props;
+    const { search, searchbarFixed } = this.props;
     return (
-      <div className="search">
+      <div className={`search ${searchbarFixed ? 'search-fixed' : ''}`}>
         <div className="searchbar-container">
           <input defaultValue={search || ''} onChange={this.handleChange} placeholder="Search" />
         </div>
@@ -42,6 +42,6 @@ class Searchbar extends React.Component {
 }
 
 export default connect(
-  ({ search }) => ({ search }),
+  ({ search, searchbarFixed }) => ({ search, searchbarFixed }),
   dispatch => ({ updateSearchTerm: value => dispatch({ type: 'UPDATE_SEARCH_TERM', data: value }) }),
 )(Searchbar);
