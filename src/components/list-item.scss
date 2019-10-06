@@ -41,6 +41,8 @@
   width: 45%;
   padding-top: 10px;
   padding-bottom: 10px;
+  display: flex;
+  position: relative;
 }
 
 .row-name span{
@@ -65,4 +67,20 @@
   background-color: var(--font-color);
   mask-image: url("data:image/svg+xml;charset=utf8,%3Csvg baseProfile='tiny' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' %3E%3Cpath d='M15.979 7.62H1.021a.4.4 0 0 0-.4.4v14.959a.4.4 0 0 0 .4.4H15.98a.4.4 0 0 0 .4-.4V8.021a.402.402 0 0 0-.401-.401zm-.399 14.959H1.42V8.421h14.16v14.158z'/%3E%3Cpath d='M22.979.62H8.021a.4.4 0 0 0-.4.4v4.959a.4.4 0 1 0 .8 0V1.421H22.58v14.158h-4.559a.4.4 0 0 0 0 .8h4.959a.4.4 0 0 0 .4-.4V1.021a.402.402 0 0 0-.401-.401z'/%3E%3C/svg%3E");
   opacity: 0.7;
+}
+
+.copied-text{
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+  top: 40%;
+  font-size: 11px;
+  color: green;
+}
+
+.copied-text-clicked {
+  visibility: visible;
+  opacity: 0;
+  top: -20px;
+  transition: all 2.5s ease-out;
 }
