@@ -1,4 +1,5 @@
 import { createStore as reduxCreateStore } from 'redux';
+import { loadLocalState, saveLocalState } from './localStore';
 
 const reducer = (state, action) => {
   if (action.type === 'UPDATE_SEARCH_TERM') {
@@ -27,5 +28,14 @@ const reducer = (state, action) => {
   return state;
 };
 
-const createStore = () => reduxCreateStore(reducer, { });
+const createStore = () => {
+  const store = reduxCreateStore(reducer, loadLocalState() || {});
+  store.subscribe(() => {
+    saveLocalState({
+      darkTheme: store.getState().darkTheme,
+    });
+  });
+  return store;
+};
+
 export default createStore;
