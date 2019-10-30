@@ -1,18 +1,28 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
+import { debounce } from 'lodash';
 import React from 'react';
-import './searchbar.css';
 import { connect } from 'react-redux';
+import './searchbar.css';
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
 
 class Searchbar extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.scrollToTop = debounce(scrollToTop, 300);
   }
 
   handleChange(event) {
     const { updateSearchTerm } = this.props;
     updateSearchTerm(event.target.value);
+    this.scrollToTop();
   }
 
   render() {
