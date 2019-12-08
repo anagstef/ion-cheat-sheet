@@ -49,7 +49,11 @@ class IndexPage extends React.Component {
     const result = search ? fuse.search(search) : pageContext.downloadedContent;
     return (
       <Layout>
-        <SEO title="ion-cheat-sheet - Ionic 4 Cheat Sheet" keywords={['ionic', 'cheatsheet', 'angular', 'css', 'react', 'vue', 'stencil', 'web components']} />
+        <SEO
+          title="Ionic Framework 4 Cheat sheet"
+          description="This is a cheat sheet for Ionic Framework 4 presenting all the useful info from official documentation gathered in one place."
+          keywords={['ionic', 'cheatsheet', 'angular', 'css', 'react', 'vue', 'stencil', 'web components']}
+        />
         <Searchbar />
         <div className="main-content" id="mainContent">
           {result.map((content) => {
