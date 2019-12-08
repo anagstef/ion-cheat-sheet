@@ -59,13 +59,12 @@ const Layout = ({ children }) => (
               ©
               {' '}
               {new Date().getFullYear()}
-  . Built with
+              .
               {' '}
-              <span className="heart-icon">&lt;3</span>
+              Find this project on
               {' '}
-  Hit me up on
-              {' '}
-              <a href="https://twitter.com/anagstef" target="_blank" rel="noopener noreferrer"><span className="twitter-icon">Twitter</span></a>
+              <a href="https://github.com/anagstef/ion-cheat-sheet" target="_blank" rel="noopener noreferrer">GitHub</a>
+              .
             </footer>
           </div>
         </div>
