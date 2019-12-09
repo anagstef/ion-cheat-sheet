@@ -1,5 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable jsx-a11y/no-autofocus */
+
 import React from 'react';
 import './searchbar.css';
 import { connect } from 'react-redux';
@@ -13,6 +16,10 @@ class Searchbar extends React.Component {
     document.addEventListener('keypress', this.handleFocus);
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('keypress', this.handleFocus);
+  }
+
   handleFocus() {
     this.searchBarRef.current.focus();
   }
@@ -23,8 +30,6 @@ class Searchbar extends React.Component {
   }
 
   render() {
-    /* eslint-disable jsx-a11y/no-autofocus */
-    /* eslint-disable no-trailing-spaces */
     const { search, searchbarFixed } = this.props;
     return (
       <div className={`search ${searchbarFixed ? 'search-fixed' : ''}`}>
