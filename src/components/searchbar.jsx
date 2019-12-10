@@ -13,11 +13,15 @@ class Searchbar extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.searchBarRef = React.createRef();
     this.handleFocus = this.handleFocus.bind(this);
-    document.addEventListener('keypress', this.handleFocus);
+    if (typeof document !== 'undefined') {
+      document.addEventListener('keypress', this.handleFocus);
+    }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keypress', this.handleFocus);
+    if (typeof document !== 'undefined') {
+      document.removeListener('keypress', this.handleFocus);
+    }
   }
 
   handleFocus() {
