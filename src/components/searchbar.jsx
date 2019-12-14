@@ -1,5 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable jsx-a11y/no-autofocus */
+
 import React from 'react';
 import './searchbar.css';
 import { connect } from 'react-redux';
@@ -8,6 +11,21 @@ class Searchbar extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.searchBarRef = React.createRef();
+    this.handleFocus = this.handleFocus.bind(this);
+    if (typeof document !== 'undefined') {
+      document.addEventListener('keypress', this.handleFocus);
+    }
+  }
+
+  componentWillUnmount() {
+    if (typeof document !== 'undefined') {
+      document.removeListener('keypress', this.handleFocus);
+    }
+  }
+
+  handleFocus() {
+    this.searchBarRef.current.focus();
   }
 
   handleChange(event) {
@@ -20,7 +38,13 @@ class Searchbar extends React.Component {
     return (
       <div className={`search ${searchbarFixed ? 'search-fixed' : ''}`}>
         <div className="searchbar-container">
-          <input defaultValue={search || ''} onChange={this.handleChange} placeholder="Search" />
+          <input
+            ref={this.searchBarRef}
+            defaultValue={search || ''} 
+            onChange={this.handleChange} 
+            placeholder="Search" 
+            autoFocus
+          />
         </div>
         <div className="checkboxes">
           <div>
