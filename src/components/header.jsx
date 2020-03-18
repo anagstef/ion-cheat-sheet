@@ -18,4 +18,4 @@ const Header = ({ siteTitle, siteSubtitle }) => (
   </header>
 );
 
-export default Header;
+export default React.memo(Header);
