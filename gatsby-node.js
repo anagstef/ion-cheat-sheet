@@ -22,7 +22,7 @@ const getCSSVars = (responseBody) => {
   const $ = cheerio.load(responseBody);
   const cssVars = [];
 
-  $('#css-custom-properties + table > tbody > tr').each(function () {
+  $('#css-custom-properties + .table-wrapper > table > tbody > tr').each(function () {
     cssVars.push({
       cssVar: $(this).children(':first-child').text().trim(),
       cssDesc: $(this).children(':nth-child(2)').text().trim(),
