@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'ion-cheat-sheet',
-    description: 'An Ionic Framework v4 Cheat Sheet',
+    description: 'An Ionic Framework Cheat Sheet',
     author: '@anagstef',
   },
   plugins: [

@@ -1,6 +1,6 @@
 {
   "name": "ion-cheat-sheet",
-  "description": "An Ionic Framework v4 CheatSheet",
+  "description": "An Ionic Framework CheatSheet",
   "version": "0.1.0",
   "dependencies": {
     "fuse.js": "3.4.5",
