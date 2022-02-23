@@ -1,31 +1,21 @@
 import { createStore as reduxCreateStore } from 'redux';
 
 const reducer = (state, action) => {
-  if (action.type === 'UPDATE_SEARCH_TERM') {
-    const newState = Object.assign({}, state, {
-      search: action.data,
-    });
-    return newState;
+  switch (action.type) {
+    case 'UPDATE_SEARCH_TERM':
+      return { ...state, search: action.data };
+    case 'DARK_THEME': {
+      const body = document.body.classList;
+      if (action.data) body.add('dark-theme');
+      else body.remove('dark-theme');
+      return { ...state, darkTheme: action.data };
+    }
+    case 'UPDATE_SEARCHBAR_FIXED':
+      return { ...state, searchbarFixed: action.data };
+    default:
+      return state;
   }
-  if (action.type === 'DARK_THEME') {
-    const body = document.body.classList;
-
-    if (action.data) body.add('dark-theme');
-    else body.remove('dark-theme');
-
-    const newState = Object.assign({}, state, {
-      darkTheme: action.data,
-    });
-    return newState;
-  }
-  if (action.type === 'UPDATE_SEARCHBAR_FIXED') {
-    const newState = Object.assign({}, state, {
-      searchbarFixed: action.data,
-    });
-    return newState;
-  }
-  return state;
 };
 
-const createStore = () => reduxCreateStore(reducer, { });
+const createStore = () => reduxCreateStore(reducer, {});
 export default createStore;
