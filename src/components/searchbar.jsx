@@ -11,11 +11,18 @@ class Searchbar extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCssVarsCheckboxChange = this.handleCssVarsCheckboxChange.bind(this);
+    this.handleMethodsCheckboxChange = this.handleMethodsCheckboxChange.bind(this);
     this.searchBarRef = React.createRef();
     this.handleFocus = this.handleFocus.bind(this);
     if (typeof document !== 'undefined') {
       document.addEventListener('keypress', this.handleFocus);
     }
+  }
+
+  componentDidMount() {
+    const { updateCssVarsSearchCheckbox } = this.props;
+    updateCssVarsSearchCheckbox(true);
   }
 
   componentWillUnmount() {
@@ -33,8 +40,20 @@ class Searchbar extends React.Component {
     updateSearchTerm(event.target.value);
   }
 
+  handleCssVarsCheckboxChange(event) {
+    const { updateCssVarsSearchCheckbox } = this.props;
+    updateCssVarsSearchCheckbox(event.target.checked);
+  }
+
+  handleMethodsCheckboxChange(event) {
+    const { updateMethodsSearchCheckbox } = this.props;
+    updateMethodsSearchCheckbox(event.target.checked);
+  }
+
   render() {
-    const { search, searchbarFixed } = this.props;
+    const { 
+      search, searchbarFixed, searchCssVars, searchMethods,
+    } = this.props;
     return (
       <div className={`search ${searchbarFixed ? 'search-fixed' : ''}`}>
         <div className="searchbar-container">
@@ -48,14 +67,14 @@ class Searchbar extends React.Component {
         </div>
         <div className="checkboxes">
           <div>
-            <input type="checkbox" name="option1" value="CSS" readOnly checked />
+            <input type="checkbox" name="option1" defaultChecked={searchCssVars} onChange={this.handleCssVarsCheckboxChange} />
             <label htmlFor="option1">CSS Vars</label>
           </div>
-          {/* <div>
-            <input type="checkbox" name="option2"
-            value="Methods" /><label htmlFor="option2">Methods</label>
-          </div>
           <div>
+            <input type="checkbox" name="option2" defaultChecked={searchMethods} onChange={this.handleMethodsCheckboxChange} />
+            <label htmlFor="option2">Methods</label>
+          </div>
+          {/* <div>
             <input type="checkbox" name="option3"
             value="Properties" /><label htmlFor="option3">Properties</label>
           </div> */}
@@ -66,6 +85,14 @@ class Searchbar extends React.Component {
 }
 
 export default connect(
-  ({ search, searchbarFixed }) => ({ search, searchbarFixed }),
-  dispatch => ({ updateSearchTerm: value => dispatch({ type: 'UPDATE_SEARCH_TERM', data: value }) }),
+  ({ 
+    search, searchbarFixed, searchCssVars, searchMethods,
+  }) => ({ 
+    search, searchbarFixed, searchCssVars, searchMethods,
+  }),
+  dispatch => ({ 
+    updateSearchTerm: value => dispatch({ type: 'UPDATE_SEARCH_TERM', data: value }),
+    updateCssVarsSearchCheckbox: value => dispatch({ type: 'UPDATE_SEARCH_CHECKBOX_CSSVARS', data: value }),
+    updateMethodsSearchCheckbox: value => dispatch({ type: 'UPDATE_SEARCH_CHECKBOX_METHODS', data: value }),
+  }),
 )(Searchbar);

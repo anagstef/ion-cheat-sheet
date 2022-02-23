@@ -45,7 +45,9 @@ class IndexPage extends React.Component {
 
   render() {
     const { fuse } = this.state;
-    const { search, pageContext } = this.props;
+    const {
+      search, pageContext, searchCssVars, searchMethods,
+    } = this.props;
     const result = search ? fuse.search(search) : pageContext.downloadedContent;
     return (
       <Layout>
@@ -57,8 +59,15 @@ class IndexPage extends React.Component {
         <Searchbar />
         <div className="main-content" id="mainContent">
           {result.map((content) => {
-            if (content.cssVars.length < 1) return null;
-            return <ListItem content={content} key={content.title} />;
+            if (content.cssVars.length === 0 && content.methods.length === 0) return null;
+            return (
+              <ListItem
+                content={content}
+                key={content.title}
+                showCssVars={searchCssVars}
+                showMethods={searchMethods}
+              />
+            );
           })}
           {!result.length ? (
             <div style={{
@@ -92,6 +101,10 @@ No matches.
 }
 
 export default connect(
-  ({ search, searchbarFixed }) => ({ search, searchbarFixed }),
+  ({
+    search, searchbarFixed, searchCssVars, searchMethods,
+  }) => ({
+    search, searchbarFixed, searchCssVars, searchMethods,
+  }),
   dispatch => ({ stickSearchBarToTop: value => dispatch({ type: 'UPDATE_SEARCHBAR_FIXED', data: value }) }),
 )(IndexPage);

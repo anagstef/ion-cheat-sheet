@@ -7,6 +7,18 @@ const reducer = (state, action) => {
     });
     return newState;
   }
+  if (action.type === 'UPDATE_SEARCH_CHECKBOX_CSSVARS') {
+    const newState = Object.assign({}, state, {
+      searchCssVars: action.data,
+    });
+    return newState;
+  }
+  if (action.type === 'UPDATE_SEARCH_CHECKBOX_METHODS') {
+    const newState = Object.assign({}, state, {
+      searchMethods: action.data,
+    });
+    return newState;
+  }
   if (action.type === 'DARK_THEME') {
     const body = document.body.classList;
 

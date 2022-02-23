@@ -32,6 +32,23 @@ const getCSSVars = (responseBody) => {
   return cssVars;
 };
 
+const getMethods = (responseBody) => {
+  const $ = cheerio.load(responseBody);
+  const methods = [];
+
+  $('#methods ~ h3').each(function () {
+    methods.push({
+      name: $(this).text().trim(),
+      description: $(this).next(".table-wrapper").children('table').children('tbody').children(':first-child').children(':nth-child(2)').text().trim(),
+      signature: $(this).next(".table-wrapper").children('table').children('tbody').children(':nth-child(2)').children(':nth-child(2)').text().trim()
+    })
+  });
+
+  console.log(methods);
+
+  return methods;
+}
+
 const getPageContent = link => cloudscraper.get(mainDocsURL + link)
   .then((response) => {
     const $ = cheerio.load(response.body);
@@ -39,6 +56,7 @@ const getPageContent = link => cloudscraper.get(mainDocsURL + link)
       title: $('h1').text().trim(),
       url: mainDocsURL + link,
       cssVars: getCSSVars(response.body),
+      methods: getMethods(response.body)
     });
   });
 
@@ -54,8 +72,8 @@ exports.onCreatePage = ({ page, actions }) => {
   const { createPage, deletePage } = actions;
   deletePage(page);
 
-  const isEmpty = downloadedContent.filter(data => data.cssVars.length > 0);
-  if (isEmpty.length < 1) throw new Error('No CSS variables to be displayed');
+  const isEmpty = downloadedContent.filter(data => data.cssVars.length > 0 || data.methods.length > 0);
+  if (isEmpty.length < 1) throw new Error('No data to be displayed');
 
   const dateNow = new Date();
   createPage({
