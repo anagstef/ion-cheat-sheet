@@ -1,5 +1,6 @@
 import { load, type AnyNode } from 'cheerio';
-const cloudscraper = require('cloudscraper').defaults({ resolveWithFullResponse: true });
+import cs from 'cloudscraper';
+const cloudscraper = cs.defaults({ resolveWithFullResponse: true });
 
 const mainDocsURL = 'https://ionicframework.com';
 const downloadedContent: any[] = [];

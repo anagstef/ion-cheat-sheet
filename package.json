@@ -1,7 +1,8 @@
 {
-  "name": "ion-astro-bun",
+  "name": "ion-cheat-sheet",
+  "description": "An Ionic Framework CheatSheet",
+  "version": "0.2.0",
   "type": "module",
-  "version": "0.0.1",
   "scripts": {
     "dev": "bunx --bun astro dev",
     "start": "bunx --bun astro dev",
