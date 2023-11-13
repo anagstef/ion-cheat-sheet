@@ -1,18 +1,18 @@
 {
-  "name": "ion-astro-bun",
+  "name": "ion-cheat-sheet",
+  "description": "An Ionic Framework CheatSheet",
+  "version": "0.2.0",
   "type": "module",
-  "version": "0.0.1",
   "scripts": {
-    "dev": "bunx --bun astro dev",
-    "start": "bunx --bun astro dev",
-    "prebuild": "bun ./scripts/scrap-ionic.ts",
-    "build": "bunx --bun astro check && bunx --bun astro build",
-    "preview": "bunx --bun astro preview",
-    "astro": "bunx --bun astro"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "prebuild": "tsx ./scripts/scrap-ionic.ts",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.1",
-    "@astrojs/node": "^6.0.3",
     "@astrojs/react": "^3.0.4",
     "@nanostores/react": "^0.7.1",
     "@types/react": "^18.2.37",
@@ -23,14 +23,13 @@
     "nanostores": "^0.9.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sharp": "v0.33.0-alpha.11",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "bun-types": "^1.0.11",
     "cheerio": "^1.0.0-rc.12",
     "cloudscraper": "^4.6.0",
     "prettier": "^3.0.3",
-    "prettier-plugin-astro": "^0.12.1"
+    "prettier-plugin-astro": "^0.12.1",
+    "tsx": "^4.1.1"
   }
 }

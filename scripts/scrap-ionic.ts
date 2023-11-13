@@ -1,5 +1,9 @@
 import { load, type AnyNode } from 'cheerio';
-const cloudscraper = require('cloudscraper').defaults({ resolveWithFullResponse: true });
+import fs from 'node:fs';
+import cs from 'cloudscraper';
+
+const cloudscraper = cs.defaults({ resolveWithFullResponse: true });
+
 
 const mainDocsURL = 'https://ionicframework.com';
 const downloadedContent: any[] = [];
@@ -57,8 +61,8 @@ await scrapData();
 const entriesWithCssVars = downloadedContent.filter(data => data.cssVars.length > 0);
 const orderedEntries = entriesWithCssVars.sort((a, b) => a.title.localeCompare(b.title));
 const data = JSON.stringify(orderedEntries, null, 2);
-await Bun.write("src/data/data.json", data);
+fs.writeFileSync("src/data/data.json", data);
 const buildDate = new Date().toISOString();
-await Bun.write("src/data/buildDate.json", JSON.stringify({ buildDate }, null, 2));
+fs.writeFileSync("src/data/buildDate.json", JSON.stringify({ buildDate }, null, 2));
 console.log('Data saved to src/data/data.json and src/data/buildDate.json');
 console.log('Scraping finished successfully!');
