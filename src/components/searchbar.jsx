@@ -1,71 +1,56 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable jsx-a11y/no-autofocus */
+import { useRef, useEffect } from 'react';
+import '../styles/Searchbar.css';
+import { useStore } from '@nanostores/react';
+import { searchTerm, isSearchbarSticky } from '../stores';
 
-import React from 'react';
-import './searchbar.css';
-import { connect } from 'react-redux';
+const Searchbar = () => {
+  const $searchTerm = useStore(searchTerm);
+  const $isSearchbarSticky = useStore(isSearchbarSticky);
+  const searchBarRef = useRef();
 
-class Searchbar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.searchBarRef = React.createRef();
-    this.handleFocus = this.handleFocus.bind(this);
+  const handleFocus = () => {
+    searchBarRef.current.focus();
+  };
+
+  useEffect(() => {
     if (typeof document !== 'undefined') {
-      document.addEventListener('keypress', this.handleFocus);
+      document.addEventListener('keypress', handleFocus);
     }
-  }
 
-  componentWillUnmount() {
-    if (typeof document !== 'undefined') {
-      document.removeListener('keypress', this.handleFocus);
-    }
-  }
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.removeListener('keypress', handleFocus);
+      }
+    };
+  }, []);
 
-  handleFocus() {
-    this.searchBarRef.current.focus();
-  }
-
-  handleChange(event) {
-    const { updateSearchTerm } = this.props;
-    updateSearchTerm(event.target.value);
-  }
-
-  render() {
-    const { search, searchbarFixed } = this.props;
-    return (
-      <div className={`search ${searchbarFixed ? 'search-fixed' : ''}`}>
-        <div className="searchbar-container">
-          <input
-            ref={this.searchBarRef}
-            defaultValue={search || ''} 
-            onChange={this.handleChange} 
-            placeholder="Search" 
-            autoFocus
-          />
-        </div>
-        <div className="checkboxes">
-          <div>
-            <input type="checkbox" name="option1" value="CSS" readOnly checked />
-            <label htmlFor="option1">CSS Vars</label>
-          </div>
-          {/* <div>
-            <input type="checkbox" name="option2"
-            value="Methods" /><label htmlFor="option2">Methods</label>
-          </div>
-          <div>
-            <input type="checkbox" name="option3"
-            value="Properties" /><label htmlFor="option3">Properties</label>
-          </div> */}
-        </div>
+  return (
+    <div className={`search ${$isSearchbarSticky ? 'search-fixed' : ''}`}>
+      <div className="searchbar-container">
+        <input
+          ref={searchBarRef}
+          defaultValue={$searchTerm || ''} 
+          onChange={(e) => searchTerm.set(e.target.value)} 
+          placeholder="Search" 
+          autoFocus
+        />
       </div>
-    );
-  }
-}
+      <div className="checkboxes">
+        <div>
+          <input type="checkbox" name="option1" value="CSS" readOnly checked />
+          <label htmlFor="option1">CSS Vars</label>
+        </div>
+        {/* <div>
+          <input type="checkbox" name="option2"
+          value="Methods" /><label htmlFor="option2">Methods</label>
+        </div>
+        <div>
+          <input type="checkbox" name="option3"
+          value="Properties" /><label htmlFor="option3">Properties</label>
+        </div> */}
+      </div>
+    </div>
+  );
+};
 
-export default connect(
-  ({ search, searchbarFixed }) => ({ search, searchbarFixed }),
-  dispatch => ({ updateSearchTerm: value => dispatch({ type: 'UPDATE_SEARCH_TERM', data: value }) }),
-)(Searchbar);
+export default Searchbar;

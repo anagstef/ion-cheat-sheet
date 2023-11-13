@@ -1,0 +1,1 @@
+This is the place where the JSON files are placed after scrapping.

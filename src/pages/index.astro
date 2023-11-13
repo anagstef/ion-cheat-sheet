@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { buildDate } from "../data/buildDate.json";
+import data from "../data/data.json";
+import Searchbar from "../components/Searchbar.jsx";
+import ComponentsList from "../components/ComponentsList";
+
+const date = new Date(buildDate);
+const dateString = `${
+  date.getMonth() + 1
+}/${date.getDate()}/${date.getFullYear()}`;
+---
+
+<Layout>
+  <Searchbar client:load />
+  <div class="main-content" id="mainContent">
+    <ComponentsList client:load scrappedData={data} />
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "flex-end",
+        fontSize: "14px",
+        fontStyle: "italic",
+      }}
+    >
+      <span style={{ width: "70%", textAlign: "right" }}>
+        Last update from <a
+          href="https://ionicframework.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "unset", color: "#4d8dff" }}
+          >Ionic Framework Docs</a
+        > was on {dateString}.
+      </span>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { isSearchbarSticky } from "../stores.ts";
+
+  window.addEventListener("scroll", () => {
+    const contentPosition = document.getElementById("mainContent")!.offsetTop;
+    const scrollPosition = window.scrollY;
+    const searchbarFixed = isSearchbarSticky.get();
+    if (scrollPosition < contentPosition && searchbarFixed)
+      isSearchbarSticky.set(false);
+    else if (scrollPosition >= contentPosition && !searchbarFixed)
+      isSearchbarSticky.set(true);
+  });
+</script>

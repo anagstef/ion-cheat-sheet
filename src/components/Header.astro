@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+import Toggle from "./Toggle.jsx";
+import IonicLogo from "../images/ionic-icon.png";
+---
+
+<header>
+  <div class="header-container">
+    <div class="header-title-logo">
+      <Image src={IonicLogo} class="ionic-logo" alt="ionic logo" />
+      <div class="header-title-text">
+        <h1>ion-cheat-sheet</h1>
+        <h5>An Ionic Framework Cheat Sheet</h5>
+      </div>
+    </div>
+    <Toggle client:load />
+  </div>
+</header>
+<style>
+  header {
+    background: var(--header-color);
+    margin-bottom: 1.45rem;
+    transition: background 0.2s ease-out;
+  }
+
+  header .header-container {
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 1.45rem 1.0875rem;
+    color: var(--header-font-color);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  header .header-title-logo {
+    display: flex;
+  }
+
+  header h1 {
+    margin: 0;
+  }
+
+  header h5 {
+    margin: 0;
+    font-style: italic;
+    margin-top: 5px;
+  }
+
+  .ionic-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .header-container img {
+    filter: brightness(100);
+    margin: 0;
+    margin-right: 30px;
+  }
+</style>
