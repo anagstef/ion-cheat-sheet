@@ -72,7 +72,7 @@
     right: 0;
     top: 40%;
     font-size: 11px;
-    color: green;
+    color: var(--ionic-link-icon-color-hover);
   }
   
   .copied-text-clicked {
