@@ -1,0 +1,333 @@
+---
+import Header from "../components/Header.astro";
+const copyrightYear = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="An Ionic Framework Cheat Sheet" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/ion-cheat-sheet/favicon.png" />
+    <title>ion-cheat-sheet</title>
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="header-content-container">
+        <Header />
+        <main
+          style={{
+            margin: "0 auto",
+            maxWidth: "960px",
+            padding: "0px 1.0875rem 1.45rem",
+            paddingTop: 0,
+            height: "100%",
+          }}
+        >
+          <slot />
+        </main>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <footer
+          style={{
+            margin: "0 auto",
+            maxWidth: "960px",
+            padding: "0px 1.0875rem 1.45rem",
+            paddingTop: 0,
+            fontSize: "12px",
+            position: "absolute",
+            bottom: 0,
+            width: "100%",
+            height: "50px",
+          }}
+        >
+          © {copyrightYear}. Find this project on
+          <a
+            href="https://github.com/anagstef/ion-cheat-sheet"
+            target="_blank"
+            rel="noopener noreferrer">GitHub</a
+          >.
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  import { isDarkTheme } from "../stores.ts";
+  isDarkTheme.subscribe((darktheme) => {
+    if (darktheme) {
+      document.body.classList.add("dark-theme");
+    } else {
+      document.body.classList.remove("dark-theme");
+    }
+  });
+</script>
+<style is:global>
+  :root {
+    --searchbar-bg-color: #f0f0f0;
+    --searchbar-text-color: rgba(0, 0, 0, 0.5);
+    --font-color: rgba(0, 0, 0, 0.8);
+    --bg-color: #fff;
+    --header-color: linear-gradient(hsl(265.36deg 54.27% 38.86%) 35%, #6f2ed3);
+    --header-font-color: #fff;
+    --ionic-link-icon-color: rgba(0, 0, 0, 0.2);
+    --ionic-link-icon-color-hover: hsl(265.36deg 54.27% 38.86% / 0.6);
+    --table-border-bottom-color: rgba(0, 0, 0, 0.15);
+    --variable-highlight-color: rgba(212, 212, 212, 0.2);
+    --variable-highlight-color-hover: rgba(77, 166, 255, 0.2);
+  }
+
+  .dark-theme {
+    --searchbar-bg-color: rgba(240, 240, 240, 0.1);
+    --searchbar-text-color: rgba(255, 255, 255, 0.7);
+    --font-color: #fff;
+    --bg-color: rgba(40, 44, 53, 1);
+    --header-color: var(--bg-color);
+    --header-font-color: #fff;
+    --ionic-link-icon-color: rgba(255, 255, 255, 0.5);
+    --ionic-link-icon-color-hover: hsl(265.36deg 54.27% 38.86%);
+    --table-border-bottom-color: rgba(255, 255, 255, 0.15);
+    --variable-highlight-color: rgba(212, 212, 212, 0.1);
+    --variable-highlight-color-hover: hsl(265.36deg 54.27% 38.86% / 0.8);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  .header-content-container {
+    padding-bottom: 50px;
+  }
+  body {
+    font-family:
+      -apple-system,
+      BlinkMacSystemFont,
+      Segoe UI,
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      Fira Sans,
+      Droid Sans,
+      Helvetica Neue,
+      sans-serif;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    transition: background-color 0.2s ease-out;
+    font-weight: normal;
+    word-wrap: break-word;
+    font-kerning: normal;
+    -moz-font-feature-settings: "kern", "liga", "clig", "calt";
+    -ms-font-feature-settings: "kern", "liga", "clig", "calt";
+    -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
+    font-feature-settings: "kern", "liga", "clig", "calt";
+  }
+  a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+  }
+  a:active,
+  a:hover {
+    outline-width: 0;
+  }
+  h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font: inherit;
+    margin: 0;
+  }
+  optgroup {
+    font-weight: 700;
+  }
+  button,
+  input {
+    overflow: visible;
+  }
+  button,
+  select {
+    text-transform: none;
+  }
+  [type="reset"],
+  [type="submit"],
+  button,
+  html [type="button"] {
+    -webkit-appearance: button;
+  }
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner,
+  button::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+  [type="button"]:-moz-focusring,
+  [type="reset"]:-moz-focusring,
+  [type="submit"]:-moz-focusring,
+  button:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+  [type="number"]::-webkit-inner-spin-button,
+  [type="number"]::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [type="search"] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
+  }
+  [type="search"]::-webkit-search-cancel-button,
+  [type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 0.54;
+  }
+  ::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
+  }
+  html {
+    font:
+      112.5%/1.45em georgia,
+      serif;
+    overflow-y: scroll;
+  }
+  h1 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 1.45rem;
+    color: inherit;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 2.25rem;
+    line-height: 1.1;
+  }
+  h2 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 1.45rem;
+    color: inherit;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 1.62671rem;
+    line-height: 1.1;
+  }
+  h3 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 1.45rem;
+    color: inherit;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 1.38316rem;
+    line-height: 1.1;
+  }
+  h4 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 1.45rem;
+    color: inherit;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 1rem;
+    line-height: 1.1;
+  }
+  h5 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 1.45rem;
+    color: inherit;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 0.85028rem;
+    line-height: 1.1;
+  }
+  h6 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 1.45rem;
+    color: inherit;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 0.78405rem;
+    line-height: 1.1;
+  }
+  p {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 1.45rem;
+  }
+  @media only screen and (max-width: 480px) {
+    html {
+      font-size: 100%;
+    }
+  }
+
+  .list-item {
+    position: relative;
+  }
+
+  .list-item h2 {
+    margin-left: 20px;
+  }
+
+  .list-item h2::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: var(--font-color);
+    mask-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-49 141 512 512'%3E%3Cpath d='M79 641.8c0 5.7.8 8.9 4 10.5 2.4 1.6 6.4 0 10.5-4.1l235.1-236.7c4-4.1 6.4-8.9 6.4-14.6s-2.4-10.5-6.4-14.6L93.5 145.7c-4-4.1-7.2-5.7-10.5-4.1-2.4.8-4 4.9-4 10.5'/%3E%3C/svg%3E");
+  }
+</style>
